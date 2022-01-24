@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/campus_tile.dart';
+import '../providers/user.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,7 +13,12 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       // Add more details to this when you decide what the drawer will do
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: ElevatedButton(
+          onPressed: () => Provider.of<User>(context, listen: false).logout(),
+          child: const Text('Log out'),
+        ),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly, // one page size area
         children: <Widget>[

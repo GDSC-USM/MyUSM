@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import './home_screen.dart';
+import '../providers/user.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
-  final TextEditingController usernameController = TextEditingController();
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  // controllers to hold the text values from the text field
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>(); // for validation and other purposes
+  bool isLogin = true; // to know if user is logging in or signing up
 
   @override
   Widget build(BuildContext context) {
@@ -20,26 +28,50 @@ class LoginScreen extends StatelessWidget {
         key: _formKey,
         child: Column(
           children: <Widget>[
+            // email field
             TextField(
-              controller: usernameController,
+              controller: emailController,
               decoration: const InputDecoration(
-                label: Text('Username'),
+                label: Text('email'),
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
+            // password field
             TextField(
               controller: passwordController,
+              obscureText: true,
               decoration: const InputDecoration(
                 label: Text('Password'),
               ),
             ),
+            // login button
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                // make sure there are no errors first
                 if (_formKey.currentState!.validate()) {
-                  Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+                  // if in login mode, try logging in
+                  if (isLogin) {
+                    Provider.of<User>(context, listen: false).login(
+                        emailController.text, passwordController.text, context);
+                  }
+                  // otherwise, sign up
+                  else {
+                    Provider.of<User>(context, listen: false).signup(
+                        emailController.text, passwordController.text, context);
+                  }
+                  // Navigator.pushReplacementNamed(context, '/');
                 }
               },
-              child: const Text('Login'),
+              child: Text(isLogin ? 'Login' : 'Signup'),
             ),
+            // change to login/signup button
+            TextButton(
+                onPressed: () {
+                  setState(() {
+                    isLogin = !isLogin;
+                  });
+                },
+                child: Text('${isLogin ? 'Signup' : 'login'} instead')),
           ],
         ),
       ),
