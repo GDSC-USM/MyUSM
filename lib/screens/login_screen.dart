@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: isLogin ? const Text('Login') : const Text('Sign Up'),
       ),
       body: Form(
         key: _formKey,

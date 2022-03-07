@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
     // Providing the User class at the top of the app downwards
     return MultiProvider(
       providers: [
-        Provider<User>(create: (context) => User()),
+        ListenableProvider<User>(create: (context) => User()),
         Provider<Posts>(create: (context) => Posts()),
       ],
       child: MaterialApp(
@@ -52,6 +52,7 @@ class MainApp extends StatelessWidget {
                   builder: (ctx) =>
                       SchoolScreen(title: settings.arguments as String));
             default:
+              return null;
           }
         },
       ),
