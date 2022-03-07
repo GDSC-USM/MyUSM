@@ -9,6 +9,7 @@ import './screens/campus_screen.dart';
 import './screens/school_screen.dart';
 import './screens/society_screen.dart';
 import './providers/user.dart';
+import './providers/posts.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,8 +25,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Providing the User class at the top of the app downwards
-    return ChangeNotifierProvider(
-      create: (context) => User(),
+    return MultiProvider(
+      providers: [
+        Provider<User>(create: (context) => User()),
+        Provider<Posts>(create: (context) => Posts()),
+      ],
       child: MaterialApp(
         // The routes table
         routes: {
