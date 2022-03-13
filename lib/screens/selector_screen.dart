@@ -12,7 +12,7 @@ class SelectorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // Returns the login screen if the user is not logged in
     // and the Home screen if he is
-    return Provider.of<User>(context).isLoggedIn()
+    return Provider.of<User>(context).isLoggedIn
         ? const HomeScreen()
         : const LoginScreen();
   }

@@ -5,7 +5,7 @@ class User with ChangeNotifier {
   // Instance of the current user
   final _instance = FirebaseAuth.instance;
 
-  bool isLoggedIn() {
+  bool get isLoggedIn {
     // If the user isn't logged in, this value will be null
     return _instance.currentUser != null;
   }
@@ -21,15 +21,13 @@ class User with ChangeNotifier {
       await _instance.createUserWithEmailAndPassword(
           email: email, password: password);
     } catch (err) {
-      // In case anything goes wrong, this is some basic error catching
-      // You can expand onto it later if you want to
-      ScaffoldMessenger.of(ctx).hideCurrentSnackBar();
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          content: const Text('An error occured'),
-          backgroundColor: Theme.of(ctx).errorColor,
-        ),
-      );
+      String message = 'An error occured';
+      // Check if error is from firebaseAuth. If so, set the error message accordingly.
+      if (err.runtimeType == FirebaseAuthException) {
+        FirebaseAuthException error = err as FirebaseAuthException;
+        message = error.message!;
+      }
+      _showErrorMessage(message, ctx);
     }
     notifyListeners();
   }
@@ -41,14 +39,25 @@ class User with ChangeNotifier {
           email: email, password: password);
       notifyListeners();
     } catch (err) {
-      // Some basic error catching
-      ScaffoldMessenger.of(ctx).hideCurrentSnackBar();
-      ScaffoldMessenger.of(ctx).showSnackBar(
-        SnackBar(
-          content: const Text('An error occured'),
-          backgroundColor: Theme.of(ctx).errorColor,
-        ),
-      );
+      String message = 'An error occured';
+      // Check if error is from firebaseAuth. If so, set the error message accordingly.
+      if (err.runtimeType == FirebaseAuthException) {
+        FirebaseAuthException error = err as FirebaseAuthException;
+        message = error.message!;
+      }
+      _showErrorMessage(message, ctx);
     }
+  }
+
+  // Since it's used more than once, made it into a function
+  void _showErrorMessage(String message, BuildContext ctx) {
+    // Show the error message
+    ScaffoldMessenger.of(ctx).hideCurrentSnackBar();
+    ScaffoldMessenger.of(ctx).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Theme.of(ctx).errorColor,
+      ),
+    );
   }
 }

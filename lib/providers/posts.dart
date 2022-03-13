@@ -5,15 +5,16 @@ class Posts with ChangeNotifier {
   late QuerySnapshot postColl;
 
   Future<void> getPosts() async {
-    // Grab all the data that is in the posts collection
+    // TODO Grab all the data that is in the posts collection
     postColl = await FirebaseFirestore.instance.collection('posts').get();
 
     postColl.docs.forEach((element) {
-      // Do something with them
+      // TODO Do something with the posts
     });
   }
 
   Posts() {
+    // TODO implement constructor
     // The constructor runs the getPosts function
     // Allowing the posts data to be collected from start
     getPosts();
