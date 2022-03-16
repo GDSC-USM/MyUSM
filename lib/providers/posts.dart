@@ -8,9 +8,9 @@ class Posts with ChangeNotifier {
     // TODO Grab all the data that is in the posts collection
     postColl = await FirebaseFirestore.instance.collection('posts').get();
 
-    postColl.docs.forEach((element) {
+    for (var document in postColl.docs) {
       // TODO Do something with the posts
-    });
+    }
   }
 
   Posts() {

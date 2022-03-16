@@ -2,6 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class User with ChangeNotifier {
+  // The class is a singleton
+  static final User _singleton = User._initialize();
+
+  factory User() {
+    return _singleton;
+  }
+
+  User._initialize();
+
   // Instance of the current user
   final _instance = FirebaseAuth.instance;
 
