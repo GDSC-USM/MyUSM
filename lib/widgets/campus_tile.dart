@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../screens/campus_screen.dart';
+/*
+  Left out this import for the time being, still working on restructuring
+  the folders
+*/
+// import '../screens/campus_screen.dart';
+
 
 class CampusTile extends StatelessWidget {
   final String name;
@@ -20,30 +25,24 @@ class CampusTile extends StatelessWidget {
       width: 200,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(15),
-        child: InkWell(
-          onTap: () {
-            Navigator.of(context)
-                .pushNamed(CampusScreen.routeName, arguments: name);
-          },
-          child: Stack(
-            children: <Widget>[
-              Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
-              Positioned(
-                bottom: 10,
-                left: 5,
-                child: Container(
-                  color: Colors.black,
-                  child: Text(
-                    name,
-                    style: const TextStyle(color: Colors.white),
-                  ),
+        child: Stack(
+          children: <Widget>[
+            Image.asset(
+              image,
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              bottom: 10,
+              left: 5,
+              child: Container(
+                color: Colors.black,
+                child: Text(
+                  name,
+                  style: const TextStyle(color: Colors.white),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

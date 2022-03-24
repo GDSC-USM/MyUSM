@@ -1,12 +1,5 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:footer/footer.dart';
-import 'package:footer/footer_view.dart';
-import 'package:my_usm/screens/society_screen.dart';
-import 'package:provider/provider.dart';
-
-import '../providers/user.dart';
+import 'package:my_usm/widgets/side_menu.dart';
 
 int selectedIndex = 0;
 
@@ -19,59 +12,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("MyUSM")),
       // Add more details to this when you decide what the drawer will do
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            const DrawerHeader(
-              child: Text(
-                'Side menu',
-                style: TextStyle(color: Colors.black, fontSize: 25),
-              ),
-              decoration: BoxDecoration(color: Colors.blue),
-            ),
-            ListTile(
-              leading: const Icon(Icons.person_outline),
-              title: const Text('Profile'),
-
-              // TODO: change this to their respoective pages
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SocietyScreen(
-                            title: 'CS Soc',
-                          ))),
-            ),
-            ListTile(
-              leading: const Icon(Icons.explore_outlined),
-              title: const Text('Explore'),
-              // TODO: change this to their respoective pages
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SocietyScreen(
-                            title: 'CS Soc',
-                          ))),
-            ),
-            ListTile(
-              leading: const Icon(Icons.question_answer_outlined),
-              title: const Text('FAQ'),
-              // TODO: change this to their respoective pages
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const SocietyScreen(
-                            title: 'CS Soc',
-                          ))),
-            ),
-            ListTile(
-              leading: const Icon(Icons.logout_outlined),
-              title: const Text('Logout'),
-              onTap: () => Provider.of<User>(context, listen: false).logout(),
-            ),
-          ],
-        ),
-      ),
+      drawer: const SideMenu(),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment:
@@ -84,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               color: Colors.grey,
             ),
 
-            const Text('Campus'),
+            const Text('Your updates'),
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Column(

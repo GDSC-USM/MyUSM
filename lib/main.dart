@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:my_usm/screens/eng_campus_screeens/eng_campus_menu_screen.dart';
+import 'package:my_usm/screens/explore_screen.dart';
+import 'package:my_usm/screens/health_campus_screeens/health_campus_menu_screen.dart';
+import 'package:my_usm/screens/main_campus_screeens/main_campus_menu_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +39,10 @@ class MainApp extends StatelessWidget {
         routes: {
           '/': (ctx) => const SelectorScreen(),
           HomeScreen.routeName: (ctx) => const HomeScreen(),
+          MainCampusMenuScreen.routeName: (ctx) => const MainCampusMenuScreen(),
+          HealthCampusMenuScreen.routeName: (ctx) => const HealthCampusMenuScreen(),
+          EngCampusMenuScreen.routeName: (ctx) => const EngCampusMenuScreen(),
+          ExploreScreen.routeName: (ctx) => const ExploreScreen()
         },
         // The generate route table for the case where the pages need some arguments
         onGenerateRoute: (settings) {
