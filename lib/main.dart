@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:my_usm/screens/eng_campus_screeens/eng_campus_menu_screen.dart';
+import 'package:my_usm/screens/campus_about_us_screen.dart';
+import 'package:my_usm/screens/campus_menu_screen.dart';
 import 'package:my_usm/screens/explore_screen.dart';
-import 'package:my_usm/screens/health_campus_screeens/health_campus_menu_screen.dart';
-import 'package:my_usm/screens/main_campus_screeens/main_campus_menu_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -39,9 +38,6 @@ class MainApp extends StatelessWidget {
         routes: {
           '/': (ctx) => const SelectorScreen(),
           HomeScreen.routeName: (ctx) => const HomeScreen(),
-          MainCampusMenuScreen.routeName: (ctx) => const MainCampusMenuScreen(),
-          HealthCampusMenuScreen.routeName: (ctx) => const HealthCampusMenuScreen(),
-          EngCampusMenuScreen.routeName: (ctx) => const EngCampusMenuScreen(),
           ExploreScreen.routeName: (ctx) => const ExploreScreen()
         },
         // The generate route table for the case where the pages need some arguments
@@ -59,6 +55,21 @@ class MainApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (ctx) =>
                       SchoolScreen(title: settings.arguments as String));
+            /*
+                Because these cases has multiple arguments, so I fetched all the
+                arguments as a list, then assigned them to to their respective
+                attributes.
+              */
+            case CampusMenuScreen.routeName:
+              List<dynamic> args = settings.arguments as List<dynamic>;
+              return MaterialPageRoute(builder: (ctx) {
+                return CampusMenuScreen(name: args[0], index: args[1]);
+              });
+            case CampusAboutUs.routeName:
+              List<dynamic> args = settings.arguments as List<dynamic>;
+              return MaterialPageRoute(builder: (ctx) {
+                return CampusAboutUs(name: args[0], index: args[1]);
+              });
             default:
               return null;
           }

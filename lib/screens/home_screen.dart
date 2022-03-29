@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_usm/widgets/bottom_nav_bar.dart';
 import 'package:my_usm/widgets/side_menu.dart';
+import 'package:my_usm/widgets/app_bar.dart';
 
 int selectedIndex = 0;
 
@@ -10,7 +12,8 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("MyUSM")),
+      backgroundColor: const Color.fromARGB(255, 243, 239, 245),
+      appBar: const UpperNavBar(title: "Home").build(context),
       // Add more details to this when you decide what the drawer will do
       drawer: const SideMenu(),
       body: SingleChildScrollView(
@@ -58,41 +61,9 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: _bottomNavBar(), // declared below
+      bottomNavigationBar: const BottomNavBar(curIndex: 0), // declared below
     );
   }
-}
-
-// Extracted into a function for ease of use
-BottomNavigationBar _bottomNavBar() {
-  return BottomNavigationBar(
-    items: const <BottomNavigationBarItem>[
-      // Home Icon
-      BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: 'Home',
-          backgroundColor: Colors.purple),
-      // Explore Icon
-      BottomNavigationBarItem(
-        icon: Icon(Icons.explore_outlined),
-        label: 'Explore',
-        backgroundColor: Colors.blue,
-      ),
-
-      // Notification Icon
-      BottomNavigationBarItem(
-          icon: Icon(Icons.notifications_none_outlined),
-          label: 'Notifications',
-          backgroundColor: Colors.red),
-
-      // Profile Icon
-      BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'User',
-          backgroundColor: Colors.pink),
-    ],
-    selectedItemColor: Colors.amber[800],
-  );
 }
 
 // Change screen based on icon tapped on bottom nav bar

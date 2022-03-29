@@ -12,43 +12,61 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: const Color.fromARGB(230, 39, 38, 53),
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
-          DrawerHeader(
-            child: InkWell(
-              child: const Text(
-                'MyUSM',
-                style: TextStyle(color: Colors.white, fontSize: 25),
+          SizedBox(
+            height: 150,
+            child: DrawerHeader(
+              child: InkWell(
+                child: const Text(
+                  'MyUSM',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 243, 239, 245),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                /* 
+                  Pop screens all the way to Home Screen.
+                  So whenever the user is at Home Screen and taps back button,
+                  it will exit the app directly.
+                */
+                onTap: () {
+                  Navigator.of(context)
+                      .pushReplacementNamed(HomeScreen.routeName);
+                },
               ),
-              /* 
-                Pop screens all the way to Home Screen.
-                So whenever the user is at Home Screen and taps back button,
-                it will exit the app directly.
-
-                24/3/2022
-                - This method is still buggy, sometimes it returns to the
-                  HomeScreen, sometimes it returns to a black screen
-              */
+          )
+          ,
+          ),
+          ListTile(
+              leading: const Icon(
+                Icons.home_outlined,
+                color: Color.fromARGB(255, 243, 239, 245),
+              ),
+              title: const Text(
+                "Home",
+                style: TextStyle(
+                  color: Color.fromARGB(255, 243, 239, 245)
+                ),
+              ),
               onTap: () {
                 Navigator.of(context)
                     .pushReplacementNamed(HomeScreen.routeName);
-              },
+              }),
+          ListTile(
+            leading: const Icon(
+              Icons.person_outline,
+              color: Color.fromARGB(255, 243, 239, 245),
             ),
-            // TODO: Replace or make the image look better if possible
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: AssetImage("assets/images/app_bar_image.jpg"))),
-          ),
-          ListTile(
-              leading: const Icon(Icons.home_outlined),
-              title: const Text("Home"),
-              onTap: () => Navigator.of(context)
-                  .pushReplacementNamed(HomeScreen.routeName)),
-          ListTile(
-            leading: const Icon(Icons.person_outline),
-            title: const Text('Profile'),
+            title: const Text(
+              'Profile',
+              style: TextStyle(
+                color: Color.fromARGB(255, 243, 239, 245)
+              ),
+            ),
 
             // TODO: change this to their respective pages
             onTap: () => Navigator.push(
@@ -59,13 +77,29 @@ class SideMenu extends StatelessWidget {
                         ))),
           ),
           ListTile(
-              leading: const Icon(Icons.explore_outlined),
-              title: const Text('Explore'),
+              leading: const Icon(
+                Icons.explore_outlined,
+                color: Color.fromARGB(255, 243, 239, 245),
+              ),
+              title: const Text(
+                'Explore',
+                style: TextStyle(
+                  color: Color.fromARGB(255, 243, 239, 245)
+                ),
+              ),
               onTap: () =>
                   Navigator.of(context).pushNamed(ExploreScreen.routeName)),
           ListTile(
-            leading: const Icon(Icons.question_answer_outlined),
-            title: const Text('FAQ'),
+            leading: const Icon(
+              Icons.question_answer_outlined,
+              color: Color.fromARGB(255, 243, 239, 245),
+            ),
+            title: const Text(
+              'FAQ',
+              style: TextStyle(
+                color: Color.fromARGB(255, 243, 239, 245)
+              ),
+            ),
             // TODO: change this to their respective pages
             onTap: () => Navigator.push(
                 context,
@@ -75,8 +109,16 @@ class SideMenu extends StatelessWidget {
                         ))),
           ),
           ListTile(
-            leading: const Icon(Icons.logout_outlined),
-            title: const Text('Logout'),
+            leading: const Icon(
+              Icons.logout_outlined,
+              color: Color.fromARGB(255, 243, 239, 245),
+            ),
+            title: const Text(
+              'Logout',
+              style: TextStyle(
+                color: Color.fromARGB(255, 243, 239, 245)
+              ),
+            ),
             onTap: () => Provider.of<User>(context, listen: false).logout(),
           ),
         ],

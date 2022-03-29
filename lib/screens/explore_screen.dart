@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:my_usm/screens/main_campus_screeens/main_campus_menu_screen.dart';
-import 'package:my_usm/screens/health_campus_screeens/health_campus_menu_screen.dart';
-import 'package:my_usm/screens/eng_campus_screeens/eng_campus_menu_screen.dart';
+import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/campus_tile.dart';
 import 'package:my_usm/widgets/side_menu.dart';
 
 import '../widgets/bottom_nav_bar.dart';
+import 'campus_menu_screen.dart';
 
 class ExploreScreen extends StatelessWidget {
   const ExploreScreen({Key? key}) : super(key: key);
@@ -14,9 +13,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Explore"),
-      ),
+      appBar: const UpperNavBar(title: "Explore").build(context),
       drawer: const SideMenu(),
       body: Container(
         child: CustomScrollView(
@@ -33,7 +30,8 @@ class ExploreScreen extends StatelessWidget {
                               image: "assets/images/main_campus.jpg"),
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                              MainCampusMenuScreen.routeName,
+                              CampusMenuScreen.routeName,
+                              arguments: ["Main Campus", 0]
                             );
                           },
                         ),
@@ -43,7 +41,8 @@ class ExploreScreen extends StatelessWidget {
                               image: "assets/images/medical_campus.jpg"),
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                              HealthCampusMenuScreen.routeName,
+                              CampusMenuScreen.routeName,
+                              arguments: ["Health Campus", 1]
                             );
                           },
                         ),
@@ -54,7 +53,8 @@ class ExploreScreen extends StatelessWidget {
                           ),
                           onTap: () {
                             Navigator.of(context).pushNamed(
-                              EngCampusMenuScreen.routeName,
+                              CampusMenuScreen.routeName,
+                              arguments: ["Engineering Campus", 2]
                             );
                           },
                         ),
@@ -81,7 +81,7 @@ class ExploreScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(),
+      bottomNavigationBar: const BottomNavBar(curIndex: 1),
     );
   }
 }

@@ -68,6 +68,7 @@ flutter:
     - assets/images/engineering_campus.jpg
     - assets/images/medical_campus.jpg
     - assets/images/app_bar_image.jpg
+    - assets/images/dtsp_main_campus.jpg
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
