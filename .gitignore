@@ -48,3 +48,4 @@ node_modules
 
 # API keys
 lib/firebase_options.dart
+android/app/src/main/AndroidManifest.xml

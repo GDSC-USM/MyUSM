@@ -11,6 +11,7 @@ import './screens/home_screen.dart';
 import './screens/campus_screen.dart';
 import './screens/school_screen.dart';
 import './screens/society_screen.dart';
+import './screens/campus_map_screen.dart';
 import './providers/user.dart';
 import './providers/posts.dart';
 
@@ -70,6 +71,10 @@ class MainApp extends StatelessWidget {
               return MaterialPageRoute(builder: (ctx) {
                 return CampusAboutUs(name: args[0], index: args[1]);
               });
+            case CampusMapScreen.routeName: // School Page
+              return MaterialPageRoute(
+                  builder: (ctx) =>
+                      CampusMapScreen(title: settings.arguments as String));
             default:
               return null;
           }

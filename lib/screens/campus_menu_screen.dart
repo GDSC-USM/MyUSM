@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_usm/screens/campus_about_us_screen.dart';
-import 'package:my_usm/widgets/app_bar.dart';
-import 'package:my_usm/widgets/bottom_nav_bar.dart';
+
+import './campus_about_us_screen.dart';
+import './campus_map_screen.dart';
+import '../widgets/app_bar.dart';
+import '../widgets/bottom_nav_bar.dart';
 
 class CampusMenuScreen extends StatelessWidget {
   static const String routeName = '/campus_menu';
@@ -39,9 +41,10 @@ class CampusMenuScreen extends StatelessWidget {
               ListTile(
                 title: const Text("Campus Map"),
                 leading: const Icon(Icons.map_outlined),
-                // TODO: Add the onTap function here, create a map interface
+                // Pushes the map screen
                 onTap: () {
-                  return;
+                  Navigator.of(context)
+                      .pushNamed(CampusMapScreen.routeName, arguments: name);
                 },
               ),
               ListTile(
