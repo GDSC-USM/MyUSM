@@ -7,6 +7,7 @@ import 'package:my_usm/screens/campus_about_us_screen.dart';
 import 'package:my_usm/screens/campus_menu_screen.dart';
 import 'package:my_usm/screens/explore_screen.dart';
 import 'package:my_usm/screens/list_of_schools_screen.dart';
+import 'package:my_usm/screens/list_of_society_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -64,6 +65,11 @@ class MainApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (ctx) =>
                       AcademicCalendar(file: settings.arguments as String));
+            case CampusMapScreen.routeName: // School Page
+              return MaterialPageRoute(
+                  builder: (ctx) =>
+                      CampusMapScreen(title: settings.arguments as String));
+
             /*
                 Because these cases has multiple arguments, so I fetched all the
                 arguments as a list, then assigned them to to their respective
@@ -71,23 +77,24 @@ class MainApp extends StatelessWidget {
             */
             case CampusMenuScreen.routeName: // Campus Menu Page
               List<dynamic> args = settings.arguments as List<dynamic>;
-              return MaterialPageRoute(builder: (ctx) {
-                return CampusMenuScreen(name: args[0], index: args[1]);
-              });
-            case CampusAboutUs.routeName: // Campus About Us Page
-              List<dynamic> args = settings.arguments as List<dynamic>;
-              return MaterialPageRoute(builder: (ctx) {
-                return CampusAboutUs(name: args[0], index: args[1]);
-              });
-            case CampusMapScreen.routeName: // School Page
               return MaterialPageRoute(
                   builder: (ctx) =>
-                      CampusMapScreen(title: settings.arguments as String));
+                      CampusMenuScreen(name: args[0], index: args[1]));
+            case CampusAboutUs.routeName: // Campus About Us Page
+              List<dynamic> args = settings.arguments as List<dynamic>;
+              return MaterialPageRoute(
+                  builder: (ctx) =>
+                      CampusAboutUs(name: args[0], index: args[1]));
             case ListOfSchool.routeName: // List of School page
               List<dynamic> args = settings.arguments as List<dynamic>;
               return MaterialPageRoute(
                   builder: (ctx) =>
                       ListOfSchool(name: args[0], index: args[1]));
+            case ListOfSociety.routeName:
+              List<dynamic> args = settings.arguments as List<dynamic>;
+              return MaterialPageRoute(
+                  builder: (ctx) =>
+                      ListOfSociety(name: args[0], index: args[1]));
             default:
               return null;
           }

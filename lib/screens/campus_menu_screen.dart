@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_usm/screens/list_of_schools_screen.dart';
+import 'package:my_usm/screens/list_of_society_screen.dart';
 
 import './campus_about_us_screen.dart';
 import './campus_map_screen.dart';
@@ -70,18 +71,17 @@ class CampusMenuScreen extends StatelessWidget {
               ListTile(
                 title: const Text("List of Schools"),
                 leading: const Icon(Icons.school_outlined),
-                // TODO: Add the onTap function here
                 onTap: () {
-                  Navigator.of(context)
-                      .pushNamed(ListOfSchool.routeName, arguments: [name, index]);
+                  Navigator.of(context).pushNamed(ListOfSchool.routeName,
+                      arguments: [name, index]);
                 },
               ),
               ListTile(
                 title: const Text("List of Societies"),
                 leading: const Icon(Icons.person_pin_circle_outlined),
-                // TODO: Add the onTap function here
                 onTap: () {
-                  return;
+                  Navigator.of(context).pushNamed(ListOfSociety.routeName,
+                      arguments: [name, index]);
                 },
               )
             ],
