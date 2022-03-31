@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_usm/screens/list_of_schools_screen.dart';
 
 import './campus_about_us_screen.dart';
 import './campus_map_screen.dart';
@@ -58,7 +59,7 @@ class CampusMenuScreen extends StatelessWidget {
                   Defines the file path of the PDF Academic Calendar and pushes 
                   the screen
                 */
-                onTap: () async {
+                onTap: () {
                   const path =
                       "assets/KALENDAR_AKADEMIK_2021_2022_28012022_1.pdf";
 
@@ -71,7 +72,8 @@ class CampusMenuScreen extends StatelessWidget {
                 leading: const Icon(Icons.school_outlined),
                 // TODO: Add the onTap function here
                 onTap: () {
-                  return;
+                  Navigator.of(context)
+                      .pushNamed(ListOfSchool.routeName, arguments: [name, index]);
                 },
               ),
               ListTile(

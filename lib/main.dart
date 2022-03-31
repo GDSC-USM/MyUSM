@@ -6,6 +6,7 @@ import 'package:my_usm/screens/academic_calendar_screen.dart';
 import 'package:my_usm/screens/campus_about_us_screen.dart';
 import 'package:my_usm/screens/campus_menu_screen.dart';
 import 'package:my_usm/screens/explore_screen.dart';
+import 'package:my_usm/screens/list_of_schools_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -82,6 +83,11 @@ class MainApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (ctx) =>
                       CampusMapScreen(title: settings.arguments as String));
+            case ListOfSchool.routeName: // List of School page
+              List<dynamic> args = settings.arguments as List<dynamic>;
+              return MaterialPageRoute(
+                  builder: (ctx) =>
+                      ListOfSchool(name: args[0], index: args[1]));
             default:
               return null;
           }
