@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/bottom_nav_bar.dart';
@@ -16,7 +14,10 @@ class AcademicCalendar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const UpperNavBar(title: "Academic Calendar").build(context),
-      body: SfPdfViewer.asset(file),
+      body: SfPdfViewer.asset(
+        file,
+        currentSearchTextHighlightColor: const Color.fromARGB(200, 255, 127, 17),
+      ),
       bottomNavigationBar: const BottomNavBar(curIndex: 1),
     );
   }

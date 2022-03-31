@@ -44,9 +44,6 @@ dependencies:
 
   # PDF View dependencies
   syncfusion_flutter_pdfviewer: ^19.4.56-beta
-  file_picker: ^4.5.1
-  path: ^1.8.1
-  path_provider: ^2.0.9
   
 dev_dependencies:
   flutter_test:
@@ -71,11 +68,14 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+  # Image assets
     - assets/images/main_campus.jpg
     - assets/images/engineering_campus.jpg
     - assets/images/medical_campus.jpg
     - assets/images/app_bar_image.jpg
     - assets/images/dtsp_main_campus.jpg
+  
+  # Other assets
     - assets/KALENDAR_AKADEMIK_2021_2022_28012022_1.pdf
     # - images/a_dot_ham.jpeg
 
