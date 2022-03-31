@@ -1,9 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 
 import './campus_about_us_screen.dart';
 import './campus_map_screen.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/bottom_nav_bar.dart';
+import 'package:my_usm/screens/academic_calendar_screen.dart';
+import 'package:my_usm/screens/campus_about_us_screen.dart';
+import 'package:my_usm/widgets/app_bar.dart';
+import 'package:my_usm/widgets/bottom_nav_bar.dart';
 
 class CampusMenuScreen extends StatelessWidget {
   static const String routeName = '/campus_menu';
@@ -50,9 +59,16 @@ class CampusMenuScreen extends StatelessWidget {
               ListTile(
                 title: const Text("Academic Calendar"),
                 leading: const Icon(Icons.calendar_month_outlined),
-                // TODO: Add the onTap function here
-                onTap: () {
-                  return;
+                /*
+                  Defines the file path of the PDF Academic Calendar and pushes 
+                  the screen
+                */
+                onTap: () async {
+                  const path =
+                      "assets/KALENDAR_AKADEMIK_2021_2022_28012022_1.pdf";
+
+                  Navigator.of(context)
+                      .pushNamed(AcademicCalendar.routeName, arguments: path);
                 },
               ),
               ListTile(

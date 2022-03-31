@@ -65,28 +65,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-
-// Change screen based on icon tapped on bottom nav bar
-void onItemTapped(int index, BuildContext context) {
-  switch (index) {
-    case 0:
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-      break;
-    case 1:
-      // TODO: Change to explore page once created
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-      break;
-    case 2:
-      // TODO: Change to notification page once created
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-      break;
-    case 3:
-      // TODO: Change to profile page once created
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
-      break;
-  }
-}

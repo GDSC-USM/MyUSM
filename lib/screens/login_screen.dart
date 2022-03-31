@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_usm/widgets/app_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/user.dart';
@@ -21,10 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Switch title bar text accordingly
-      appBar: AppBar(
-        title: isLogin ? const Text('Login') : const Text('Sign Up'),
-      ),
+      appBar: UpperNavBar(title: isLogin ? 'Login' : 'Sign Up').build(context),
       body: Form(
         key: _formKey,
         child: Column(
@@ -51,6 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ElevatedButton(
               onPressed: _submitForm,
               child: Text(isLogin ? 'Login' : 'Signup'),
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromARGB(255, 39, 38, 53)
+              ),
             ),
             // change to login/signup button
             TextButton(
@@ -59,7 +60,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     isLogin = !isLogin;
                   });
                 },
-                child: Text('${isLogin ? 'Signup' : 'login'} instead')),
+                child: Text('${isLogin ? 'Signup' : 'login'} instead'),
+                style: TextButton.styleFrom(
+                  primary: const Color.fromARGB(255, 39, 38, 53)
+                )
+            ),
           ],
         ),
       ),

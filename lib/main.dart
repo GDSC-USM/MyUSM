@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:my_usm/screens/academic_calendar_screen.dart';
 import 'package:my_usm/screens/campus_about_us_screen.dart';
 import 'package:my_usm/screens/campus_menu_screen.dart';
 import 'package:my_usm/screens/explore_screen.dart';
@@ -56,17 +59,21 @@ class MainApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (ctx) =>
                       SchoolScreen(title: settings.arguments as String));
+            case AcademicCalendar.routeName: // Academic Calendar Page
+              return MaterialPageRoute(
+                  builder: (ctx) =>
+                      AcademicCalendar(file: settings.arguments as String));
             /*
                 Because these cases has multiple arguments, so I fetched all the
                 arguments as a list, then assigned them to to their respective
                 attributes.
-              */
-            case CampusMenuScreen.routeName:
+            */
+            case CampusMenuScreen.routeName: // Campus Menu Page
               List<dynamic> args = settings.arguments as List<dynamic>;
               return MaterialPageRoute(builder: (ctx) {
                 return CampusMenuScreen(name: args[0], index: args[1]);
               });
-            case CampusAboutUs.routeName:
+            case CampusAboutUs.routeName: // Campus About Us Page
               List<dynamic> args = settings.arguments as List<dynamic>;
               return MaterialPageRoute(builder: (ctx) {
                 return CampusAboutUs(name: args[0], index: args[1]);

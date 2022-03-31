@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:my_usm/widgets/app_bar.dart';
 
 /// Creates a page that shows the main campus on google maps
 class CampusMapScreen extends StatefulWidget {
@@ -40,9 +41,7 @@ class _CampusMapScreenState extends State<CampusMapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // The app bar
-      appBar: AppBar(
-        title: Text('${widget._title}\'s map'),
-      ),
+      appBar: UpperNavBar(title: '${widget._title}\'s map').build(context),
       // The actual map
       body: GoogleMap(
         onMapCreated: _onMapCreated,
@@ -56,6 +55,7 @@ class _CampusMapScreenState extends State<CampusMapScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => _changeMapType(),
         child: const Icon(Icons.map),
+        backgroundColor: const Color.fromARGB(255, 39, 38, 53),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.miniStartFloat,
     );
