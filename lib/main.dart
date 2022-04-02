@@ -6,6 +6,7 @@ import 'package:my_usm/screens/academic_calendar_screen.dart';
 import 'package:my_usm/screens/campus_about_us_screen.dart';
 import 'package:my_usm/screens/campus_menu_screen.dart';
 import 'package:my_usm/screens/explore_screen.dart';
+import 'package:my_usm/screens/faq_screen.dart';
 import 'package:my_usm/screens/list_of_schools_screen.dart';
 import 'package:my_usm/screens/list_of_society_screen.dart';
 import 'firebase_options.dart';
@@ -44,7 +45,8 @@ class MainApp extends StatelessWidget {
         routes: {
           '/': (ctx) => const SelectorScreen(),
           HomeScreen.routeName: (ctx) => const HomeScreen(),
-          ExploreScreen.routeName: (ctx) => const ExploreScreen()
+          ExploreScreen.routeName: (ctx) => const ExploreScreen(),
+          FAQ.routeName: (ctx) => const FAQ()
         },
         // The generate route table for the case where the pages need some arguments
         onGenerateRoute: (settings) {

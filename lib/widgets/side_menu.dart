@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_usm/screens/faq_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/user.dart';
@@ -29,6 +30,7 @@ class SideMenu extends StatelessWidget {
                   ),
                 ),
                 /* 
+                  Used pushReplacementNamed method is to
                   Pop screens all the way to Home Screen.
                   So whenever the user is at Home Screen and taps back button,
                   it will exit the app directly.
@@ -38,8 +40,7 @@ class SideMenu extends StatelessWidget {
                       .pushReplacementNamed(HomeScreen.routeName);
                 },
               ),
-          )
-          ,
+            ),
           ),
           ListTile(
               leading: const Icon(
@@ -52,6 +53,11 @@ class SideMenu extends StatelessWidget {
                   color: Color.fromARGB(255, 243, 239, 245)
                 ),
               ),
+              /*
+                Used pushReplacementNamed method is to enable the user to exit
+                application directly when the back button is pressed at Home
+                Screen.
+              */
               onTap: () {
                 Navigator.of(context)
                     .pushReplacementNamed(HomeScreen.routeName);
@@ -100,13 +106,7 @@ class SideMenu extends StatelessWidget {
                 color: Color.fromARGB(255, 243, 239, 245)
               ),
             ),
-            // TODO: change this to their respective pages
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const SocietyScreen(
-                          title: 'CS Soc',
-                        ))),
+            onTap: () => Navigator.of(context).pushNamed(FAQ.routeName)
           ),
           ListTile(
             leading: const Icon(
