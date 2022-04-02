@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_usm/screens/explore_screen.dart';
+import 'package:my_usm/screens/home_screen.dart';
+import 'package:my_usm/screens/society_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int curIndex;
@@ -18,10 +21,7 @@ class BottomNavBar extends StatelessWidget {
 
       items: const <BottomNavigationBarItem>[
         // Home Icon
-        BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home'
-        ),
+        BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         // Explore Icon
         BottomNavigationBarItem(
           icon: Icon(Icons.explore_outlined),
@@ -30,17 +30,40 @@ class BottomNavBar extends StatelessWidget {
 
         // Notification Icon
         BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none_outlined),
-            label: 'Notifications',
+          icon: Icon(Icons.notifications_none_outlined),
+          label: 'Notifications',
         ),
 
         // Profile Icon
         BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'User',
+          icon: Icon(Icons.person),
+          label: 'User',
         ),
       ],
       // TODO: Figure a way to change the index based on which screen is displayed
+      onTap: (index) {
+        switch (index) {
+
+          // Home button
+          case 0:
+            Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+            break;
+
+          // Explore button
+          case 1:
+            Navigator.of(context).pushNamed(ExploreScreen.routeName);
+            break;
+          // Notification button
+          case 2:
+          // TODO: Push to Notification page when it's done
+
+          // Profile button
+          case 3:
+          // TODO: Push to Profile page when it's done
+
+          default:
+        }
+      },
       currentIndex: curIndex,
     );
   }
