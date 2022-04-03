@@ -67,7 +67,7 @@ class MainApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (ctx) =>
                       AcademicCalendar(file: settings.arguments as String));
-            case CampusMapScreen.routeName: // School Page
+            case CampusMapScreen.routeName: // Campus Map Page
               return MaterialPageRoute(
                   builder: (ctx) =>
                       CampusMapScreen(title: settings.arguments as String));

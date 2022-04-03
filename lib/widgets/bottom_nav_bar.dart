@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_usm/screens/explore_screen.dart';
 import 'package:my_usm/screens/home_screen.dart';
-import 'package:my_usm/screens/society_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int curIndex;
