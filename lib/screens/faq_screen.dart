@@ -59,47 +59,50 @@ class _FAQState extends State<FAQ> {
           ),
 
           // FAQ list tiles
-          ListView.separated(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(10.0),
-            itemCount: faqs.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ExpansionTile(
-                iconColor: const Color.fromARGB(255, 255, 127, 17),
-                textColor: const Color.fromARGB(255, 255, 127, 17),
-                
-                title: Text(faqs.keys.elementAt(index)),
+          Expanded(
+            child: ListView.separated(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(10.0),
+              itemCount: faqs.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ExpansionTile(
+                  iconColor: const Color.fromARGB(255, 255, 127, 17),
+                  textColor: const Color.fromARGB(255, 255, 127, 17),
+                  
+                  title: Text(faqs.keys.elementAt(index)),
 
-                /*
-                  Truncated the text so that it shows a sneak peek of the 
-                  answer if it's long.
-                */
-                subtitle: Text(
-                  faqs.values.elementAt(index),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                ),
-                children: <Widget>[
-                  ListTile(
-                    title: Text(
-                      faqs.values.elementAt(index),
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 39, 38, 53)
+                  /*
+                    Truncated the text so that it shows a sneak peek of the 
+                    answer if it's long.
+                  */
+                  subtitle: Text(
+                    faqs.values.elementAt(index),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                  ),
+                  children: <Widget>[
+                    ListTile(
+                      title: Text(
+                        faqs.values.elementAt(index),
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 39, 38, 53)
+                        ),
                       ),
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                  )
-                ],
-                controlAffinity: ListTileControlAffinity.leading,
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return const SizedBox(
-                height: 10,
-              );
-            },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                    )
+                  ],
+                  controlAffinity: ListTileControlAffinity.leading,
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return const SizedBox(
+                  height: 10,
+                );
+              },
+            ),
           ),
         ],
       ),
