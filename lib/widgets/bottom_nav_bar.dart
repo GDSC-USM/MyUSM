@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_usm/screens/explore_screen.dart';
 import 'package:my_usm/screens/home_screen.dart';
+import 'package:my_usm/screens/profile_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int curIndex;
@@ -58,7 +59,8 @@ class BottomNavBar extends StatelessWidget {
 
           // Profile button
           case 3:
-          // TODO: Push to Profile page when it's done
+            Navigator.of(context).pushNamed(Profile.routeName);
+            break;
 
           default:
         }

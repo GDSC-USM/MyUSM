@@ -44,6 +44,9 @@ dependencies:
 
   # PDF View dependencies
   syncfusion_flutter_pdfviewer: ^19.4.56-beta
+
+  # Social Icon dependency
+  font_awesome_flutter: ^10.1.0
   
 dev_dependencies:
   flutter_test:
@@ -77,6 +80,7 @@ flutter:
   
   # Other assets
     - assets/KALENDAR_AKADEMIK_2021_2022_28012022_1.pdf
+    - assets/PPSK_JW_Sem2_2021-2022.pdf
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
