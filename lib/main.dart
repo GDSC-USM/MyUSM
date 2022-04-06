@@ -9,6 +9,7 @@ import 'package:my_usm/screens/explore_screen.dart';
 import 'package:my_usm/screens/faq_screen.dart';
 import 'package:my_usm/screens/list_of_schools_screen.dart';
 import 'package:my_usm/screens/list_of_society_screen.dart';
+import 'package:my_usm/screens/profile_edit_screen.dart';
 import 'package:my_usm/screens/profile_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +49,13 @@ class MainApp extends StatelessWidget {
           HomeScreen.routeName: (ctx) => const HomeScreen(),
           ExploreScreen.routeName: (ctx) => const ExploreScreen(),
           FAQ.routeName: (ctx) => const FAQ(),
-          Profile.routeName: (ctx) => const Profile()
+
+          /*
+            These two routes may need to go to onGenerateRoute, but since 
+            database is not yet set up, everything is still constant
+          */
+          Profile.routeName: (ctx) => const Profile(),
+          EditProfile.routeName: (ctx) => const EditProfile()
         },
         // The generate route table for the case where the pages need some arguments
         onGenerateRoute: (settings) {

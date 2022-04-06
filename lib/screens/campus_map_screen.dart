@@ -52,7 +52,7 @@ class _CampusMapScreenState extends State<CampusMapScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       // The app bar
-      appBar: UpperNavBar(title: '${widget._title}\' map').build(context),
+      appBar: UpperNavBar(title: '${widget._title}\'s map').build(context),
       // The actual map
       body: GoogleMap(
         // Function for when the map is created

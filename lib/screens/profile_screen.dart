@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_usm/screens/profile_edit_screen.dart';
 import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/bottom_nav_bar.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
@@ -9,7 +10,8 @@ class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
   // Used for the about me description testing purpose
-  final String aboutMe = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat interdum venenatis. Pellentesque sed nunc ut nunc lacinia mollis. Nullam euismod est sed porta faucibus. Curabitur interdum dolor leo, et lobortis diam pretium quis. Praesent ligula mauris, convallis eu ultricies ac, euismod sed lectus. Ut elit velit, scelerisque at lorem at, euismod dapibus sapien. Praesent vel lorem vitae lectus iaculis pharetra. Nullam interdum, tellus ac ullamcorper auctor, ante ante efficitur nibh, ut dictum justo ligula imperdiet felis. Proin accumsan odio sed arcu accumsan, a lobortis leo pellentesque. Nullam at porttitor velit";
+  final String aboutMe =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat interdum venenatis. Pellentesque sed nunc ut nunc lacinia mollis. Nullam euismod est sed porta faucibus. Curabitur interdum dolor leo, et lobortis diam pretium quis. Praesent ligula mauris, convallis eu ultricies ac, euismod sed lectus. Ut elit velit, scelerisque at lorem at, euismod dapibus sapien. Praesent vel lorem vitae lectus iaculis pharetra. Nullam interdum, tellus ac ullamcorper auctor, ante ante efficitur nibh, ut dictum justo ligula imperdiet felis. Proin accumsan odio sed arcu accumsan, a lobortis leo pellentesque. Nullam at porttitor velit";
 
   @override
   Widget build(BuildContext context) {
@@ -48,35 +50,34 @@ class Profile extends StatelessWidget {
                   top: 100.0,
                   child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Stack(
-                        alignment: Alignment.topRight, 
-                        children: <Widget>[
-                          Container(
-                            padding: const EdgeInsets.all(10),
-                            color: const Color.fromARGB(255, 39, 38, 53),
-                            height: 120,
-                            width: MediaQuery.of(context).size.width - 10,
+                      child: Stack(alignment: Alignment.topRight, children: <
+                          Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          color: const Color.fromARGB(255, 39, 38, 53),
+                          height: 120,
+                          width: MediaQuery.of(context).size.width - 10,
 
-                            // Places the information in a row
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: <Widget>[
-                                // Profile Image
-                                Flexible(
-                                  flex: 1,
-                                  child: Container(
-                                    height: 90,
-                                    width: 90,
-                                    decoration: const BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            image: NetworkImage(
-                                                'http://cdn.ppcorn.com/us/wp-content/uploads/sites/14/2016/01/Mark-Zuckerberg-pop-art-ppcorn.jpg'))),
-                                  ),
+                          // Places the information in a row
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              // Profile Image
+                              Flexible(
+                                flex: 1,
+                                child: Container(
+                                  height: 90,
+                                  width: 90,
+                                  decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(
+                                              'http://cdn.ppcorn.com/us/wp-content/uploads/sites/14/2016/01/Mark-Zuckerberg-pop-art-ppcorn.jpg'))),
                                 ),
+                              ),
 
-                                /*
+                              /*
                                   Basic Info container, arranged in a column
                                   The format of the info goes like this:
 
@@ -87,103 +88,97 @@ class Profile extends StatelessWidget {
                                   These informations should be fetched from
                                   Firebase later
                                 */
-                                const Flexible(
-                                  flex: 2,
-                                  fit: FlexFit.tight,
-                                  child: Text(
-                                    "Jason Lee\nSchool of Computer Science\nYear 1",
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 243, 239, 245),
-                                        height: 1.8),
-                                  ),
+                              const Flexible(
+                                flex: 2,
+                                fit: FlexFit.tight,
+                                child: Text(
+                                  "Jason Lee\nSchool of Computer Science\nYear 1",
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 243, 239, 245),
+                                      height: 1.8),
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+                        ),
 
-                          // Edit button
-                          Positioned(
-                              right: 15,
-                              child: ElevatedButton(
-                                
-                                style: ElevatedButton.styleFrom(
+                        // Edit button
+                        Positioned(
+                            right: 15,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
                                   primary:
                                       const Color.fromARGB(255, 243, 239, 245),
                                   minimumSize: const Size(25, 15),
-                                  shape: const StadiumBorder()
-                                ),
-                                // TODO: Navigate to Edit page once it is done
+                                  shape: const StadiumBorder()),
+                              // TODO: Navigate to Edit page once it is done
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed(EditProfile.routeName);
+                              },
+                              child: const Text(
+                                "Edit",
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 39, 38, 53),
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )),
+
+                        // Social icons
+                        Positioned(
+                          top: 85,
+                          right: 10,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              // LinkedIn Icon
+                              IconButton(
+                                  constraints: const BoxConstraints(),
+                                  padding: const EdgeInsets.all(3),
+
+                                  // Link to the profile of the user
+                                  onPressed: () {
+                                    return;
+                                  },
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.linkedin,
+                                    color: Color.fromARGB(255, 243, 239, 245),
+                                  )),
+
+                              // Instagram Icon
+                              IconButton(
+                                  constraints: const BoxConstraints(),
+                                  padding: const EdgeInsets.all(3),
+
+                                  // Link to the profile of the user
+                                  onPressed: () {
+                                    return;
+                                  },
+                                  icon: const FaIcon(
+                                    FontAwesomeIcons.instagram,
+                                    color: Color.fromARGB(255, 243, 239, 245),
+                                  )),
+
+                              // Facebook Icon
+                              IconButton(
+                                constraints: const BoxConstraints(),
+                                padding: const EdgeInsets.all(3),
+
+                                // Link to the profile of the user
                                 onPressed: () {
                                   return;
                                 },
-                                child: const Text(
-                                  "Edit",
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 39, 38, 53),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold
-                                  ),
+                                icon: const FaIcon(
+                                  FontAwesomeIcons.facebook,
+                                  color: Color.fromARGB(255, 243, 239, 245),
                                 ),
-                              )),
-
-                          Positioned(
-                            top: 85,
-                            right: 10,
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-
-                                  // LinkedIn Icon
-                                  IconButton(
-                                      constraints: const BoxConstraints(),
-                                      padding: const EdgeInsets.all(3),
-
-                                      // Link to the profile of the user
-                                      onPressed: () {
-                                        return;
-                                      },
-                                      icon: const FaIcon(
-                                        FontAwesomeIcons.linkedin,
-                                        color: Color.fromARGB(255, 243, 239, 245),
-                                      )),
-
-                                  // Instagram Icon
-                                  IconButton(
-                                      constraints: const BoxConstraints(),
-                                      padding: const EdgeInsets.all(3),
-
-                                      // Link to the profile of the user
-                                      onPressed: () {
-                                        return;
-                                      },
-                                      icon: const FaIcon(
-                                        FontAwesomeIcons.instagram,
-                                        color: Color.fromARGB(255, 243, 239, 245),
-                                        
-                                      )),
-                                  
-                                  // Facebook Icon
-                                  IconButton(
-                                    constraints: const BoxConstraints(),
-                                    padding: const EdgeInsets.all(3),
-
-                                    // Link to the profile of the user
-                                    onPressed: () {
-                                      return;
-                                    },
-                                    icon: const FaIcon(
-                                      FontAwesomeIcons.facebook,
-                                      color: Color.fromARGB(255, 243, 239, 245),
-                                    ),
-                                  )
-                                ],
-                              ),
-                          )
-                        ]
-                      )
-                  )
-              )
+                              )
+                            ],
+                          ),
+                        )
+                      ])))
             ],
           ),
 
@@ -195,10 +190,9 @@ class Profile extends StatelessWidget {
             child: const Text(
               "About Me",
               style: TextStyle(
-                color: Color.fromARGB(255, 39, 38, 53),
-                fontWeight: FontWeight.bold,
-                fontSize: 24
-              ),
+                  color: Color.fromARGB(255, 39, 38, 53),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24),
             ),
           ),
 
@@ -222,10 +216,9 @@ class Profile extends StatelessWidget {
             child: const Text(
               "My Timetable",
               style: TextStyle(
-                color: Color.fromARGB(255, 39, 38, 53),
-                fontWeight: FontWeight.bold,
-                fontSize: 24
-              ),
+                  color: Color.fromARGB(255, 39, 38, 53),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24),
             ),
           ),
 
@@ -235,14 +228,13 @@ class Profile extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             width: double.infinity,
             height: 300,
-            child: SfPdfViewer.asset(
-              "assets/PPSK_JW_Sem2_2021-2022.pdf"
-            ),
+            child: SfPdfViewer.asset("assets/PPSK_JW_Sem2_2021-2022.pdf"),
           ),
 
           // Sized Box to enable a little bit of over scrolling
-          const SizedBox(height: 50,)
-          
+          const SizedBox(
+            height: 50,
+          )
         ],
       ),
       bottomNavigationBar: const BottomNavBar(curIndex: 3),
