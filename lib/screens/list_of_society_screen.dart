@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_usm/screens/school_society_profile_screen.dart';
 import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/bottom_nav_bar.dart';
 
@@ -63,7 +64,8 @@ class ListOfSociety extends StatelessWidget {
                 // leading: ,
                 title: Text(mainCampusSociety[index]),
                 onTap: () {
-                  return;
+                  Navigator.of(context)
+                      .pushNamed(SchoolSocietyProfile.routeName, arguments: mainCampusSociety[index]);
                 },
               );
             });
@@ -81,11 +83,9 @@ class ListOfSociety extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10),
                     side: const BorderSide(
-                      color: Color.fromARGB(255, 39, 38, 53)
-                    )
-                ),
+                        color: Color.fromARGB(255, 39, 38, 53))),
                 // leading:
                 title: Text(healthCampusSociety[index]),
                 onTap: () {
@@ -107,11 +107,9 @@ class ListOfSociety extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(10),
                     side: const BorderSide(
-                      color: Color.fromARGB(255, 39, 38, 53)
-                    )
-                ),
+                        color: Color.fromARGB(255, 39, 38, 53))),
                 // leading
                 title: Text(engCampusSociety[index]),
                 onTap: () {

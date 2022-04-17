@@ -47,6 +47,9 @@ dependencies:
 
   # Social Icon dependency
   font_awesome_flutter: ^10.1.0
+
+  # Allow collapsible text
+  expandable_text: ^2.3.0
   
 dev_dependencies:
   flutter_test:

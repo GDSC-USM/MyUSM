@@ -11,6 +11,7 @@ import 'package:my_usm/screens/list_of_schools_screen.dart';
 import 'package:my_usm/screens/list_of_society_screen.dart';
 import 'package:my_usm/screens/profile_edit_screen.dart';
 import 'package:my_usm/screens/profile_screen.dart';
+import 'package:my_usm/screens/school_society_profile_screen.dart';
 import 'firebase_options.dart';
 import 'package:provider/provider.dart';
 
@@ -80,6 +81,10 @@ class MainApp extends StatelessWidget {
               return MaterialPageRoute(
                   builder: (ctx) =>
                       CampusMapScreen(title: settings.arguments as String));
+            case SchoolSocietyProfile.routeName:
+              return MaterialPageRoute(
+                  builder: (ctx) => SchoolSocietyProfile(
+                      title: settings.arguments as String));
 
             /*
                 Because these cases has multiple arguments, so I fetched all the
