@@ -112,7 +112,6 @@ class Profile extends StatelessWidget {
                                       const Color.fromARGB(255, 243, 239, 245),
                                   minimumSize: const Size(25, 15),
                                   shape: const StadiumBorder()),
-                              // TODO: Navigate to Edit page once it is done
                               onPressed: () {
                                 Navigator.of(context)
                                     .pushNamed(EditProfile.routeName);
@@ -223,7 +222,6 @@ class Profile extends StatelessWidget {
           ),
 
           // Timetable content
-          // TODO: Solve contraints error
           Container(
             padding: const EdgeInsets.all(10),
             width: double.infinity,

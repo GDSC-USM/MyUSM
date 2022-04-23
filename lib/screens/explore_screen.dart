@@ -18,7 +18,7 @@ class ExploreScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverToBoxAdapter(
-              child: Container(
+              child: SizedBox(
                   height: 150,
                   child: ListView(
                     scrollDirection: Axis.horizontal,

@@ -171,7 +171,6 @@ class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(left: 10.0),
           child: ElevatedButton(
-            // TODO: Link to edit society/school screen here
             onPressed: () {
               Navigator.of(context).pushNamed(SchoolSocietyEdit.routeName);
             },
