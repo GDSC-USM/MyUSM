@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_usm/screens/explore_screen.dart';
 import 'package:my_usm/screens/home_screen.dart';
+import 'package:my_usm/screens/notification_screen.dart';
 import 'package:my_usm/screens/profile_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -18,7 +19,6 @@ class BottomNavBar extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 39, 38, 53),
       unselectedItemColor: const Color.fromARGB(255, 243, 239, 245),
       selectedItemColor: const Color.fromARGB(255, 255, 127, 17),
-
       items: const <BottomNavigationBarItem>[
         // Home Icon
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
@@ -40,7 +40,6 @@ class BottomNavBar extends StatelessWidget {
           label: 'User',
         ),
       ],
-      // TODO: Figure a way to change the index based on which screen is displayed
       onTap: (index) {
         switch (index) {
 
@@ -48,15 +47,14 @@ class BottomNavBar extends StatelessWidget {
           case 0:
             Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
             break;
-
           // Explore button
           case 1:
             Navigator.of(context).pushNamed(ExploreScreen.routeName);
             break;
           // Notification button
           case 2:
-          // TODO: Push to Notification page when it's done
-
+            Navigator.of(context).pushNamed(NotificationScreen.routeName);
+            break;
           // Profile button
           case 3:
             Navigator.of(context).pushNamed(Profile.routeName);

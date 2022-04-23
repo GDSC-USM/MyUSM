@@ -9,6 +9,7 @@ import 'package:my_usm/screens/explore_screen.dart';
 import 'package:my_usm/screens/faq_screen.dart';
 import 'package:my_usm/screens/list_of_schools_screen.dart';
 import 'package:my_usm/screens/list_of_society_screen.dart';
+import 'package:my_usm/screens/notification_screen.dart';
 import 'package:my_usm/screens/profile_edit_screen.dart';
 import 'package:my_usm/screens/profile_screen.dart';
 import 'package:my_usm/screens/school_society_edit_screen.dart';
@@ -55,7 +56,8 @@ class MainApp extends StatelessWidget {
           */
           Profile.routeName: (ctx) => const Profile(),
           EditProfile.routeName: (ctx) => const EditProfile(),
-          SchoolSocietyEdit.routeName: (ctx) => const SchoolSocietyEdit()
+          SchoolSocietyEdit.routeName: (ctx) => const SchoolSocietyEdit(),
+          NotificationScreen.routeName: (ctx) => const NotificationScreen()
         },
         // The generate route table for the case where the pages need some arguments
         onGenerateRoute: (settings) {
