@@ -49,6 +49,7 @@ class MainApp extends StatelessWidget {
           HomeScreen.routeName: (ctx) => const HomeScreen(),
           ExploreScreen.routeName: (ctx) => const ExploreScreen(),
           FAQ.routeName: (ctx) => const FAQ(),
+          NotificationScreen.routeName: (ctx) => const NotificationScreen(),
 
           /*
             These two routes may need to go to onGenerateRoute, but since 
@@ -56,8 +57,7 @@ class MainApp extends StatelessWidget {
           */
           Profile.routeName: (ctx) => const Profile(),
           EditProfile.routeName: (ctx) => const EditProfile(),
-          SchoolSocietyEdit.routeName: (ctx) => const SchoolSocietyEdit(),
-          NotificationScreen.routeName: (ctx) => const NotificationScreen()
+          SchoolSocietyEdit.routeName: (ctx) => const SchoolSocietyEdit()
         },
         // The generate route table for the case where the pages need some arguments
         onGenerateRoute: (settings) {

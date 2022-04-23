@@ -20,6 +20,11 @@ class _SchoolSocietyEdit extends State<SchoolSocietyEdit> {
 
   @override
   Widget build(BuildContext context) {
+
+    // Initialize to have at least one widget inside
+    if (organizationList.isEmpty) {
+      addOrganizationList();
+    }
     return Scaffold(
       appBar: const UpperNavBar(title: "Edit").build(context),
       body: SingleChildScrollView(
@@ -49,7 +54,6 @@ class _SchoolSocietyEdit extends State<SchoolSocietyEdit> {
                   ],
                 ),
 
-                // Edit icon
                 // Edit button
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
@@ -68,7 +72,6 @@ class _SchoolSocietyEdit extends State<SchoolSocietyEdit> {
                     child: const FaIcon(
                       FontAwesomeIcons.pencil,
                       color: Color.fromARGB(255, 255, 127, 17),
-                      size: 5,
                     ))
               ],
             ),
@@ -177,7 +180,7 @@ class _SchoolSocietyEdit extends State<SchoolSocietyEdit> {
                   maxLines: 5,
                   decoration: InputDecoration(
                     // Label Text
-                    labelText: "About Me",
+                    labelText: "About Us",
                     labelStyle: const TextStyle(
                         color: Color.fromARGB(255, 39, 38, 53),
                         leadingDistribution:
@@ -221,33 +224,30 @@ class _SchoolSocietyEdit extends State<SchoolSocietyEdit> {
             Container(
               margin: const EdgeInsets.all(10.0),
               decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color.fromARGB(255, 39, 38, 53),
-                ),
-                borderRadius: BorderRadius.circular(10.0)
-              ),
+                  border: Border.all(
+                    color: const Color.fromARGB(255, 39, 38, 53),
+                  ),
+                  borderRadius: BorderRadius.circular(10.0)),
               child: ListView.builder(
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemCount: organizationList.length,
                   itemBuilder: (BuildContext context, int index) {
                     return organizationList[index];
-                  }
-              ),
+                  }),
             ),
 
             // Add position button
             Center(
               child: ElevatedButton(
-                  onPressed: addOrganizationList,
-                  child: const Icon(
-                    Icons.add,
-                    color: Color.fromARGB(255, 255, 127, 17),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 39, 38, 53),
-                    
-                  ),
+                onPressed: addOrganizationList,
+                child: const Icon(
+                  Icons.add,
+                  color: Color.fromARGB(255, 255, 127, 17),
+                ),
+                style: ElevatedButton.styleFrom(
+                  primary: const Color.fromARGB(255, 39, 38, 53),
+                ),
               ),
             ),
 
@@ -372,23 +372,23 @@ class _SchoolSocietyEdit extends State<SchoolSocietyEdit> {
 
   Widget createPosition() {
     return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
-            child: const TextField(
-              decoration: InputDecoration(hintText: "What is this position?"),
-            ),
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: const TextField(
+            decoration: InputDecoration(hintText: "What is this position?"),
           ),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.4,
-            child: const TextField(
-              decoration:
-                  InputDecoration(hintText: "Who's holding this position?"),
-            ),
-          )
-        ],
-      );
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width * 0.4,
+          child: const TextField(
+            decoration:
+                InputDecoration(hintText: "Who's holding this position?"),
+          ),
+        )
+      ],
+    );
   }
 
   void addOrganizationList() {

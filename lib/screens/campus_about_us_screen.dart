@@ -30,47 +30,40 @@ Widget getCampus(int campusIndex, BuildContext context) {
         children: <Widget>[
           // The About Us section
           Container(
-            padding: const EdgeInsets.all(10.0),
-            alignment: Alignment.topCenter,
-            child: const Text.rich(
-              TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: "About Us\n",
-                    style: TextStyle(
+              padding: const EdgeInsets.all(10.0),
+              alignment: Alignment.topCenter,
+              child: const Text.rich(TextSpan(children: <TextSpan>[
+                TextSpan(
+                  text: "About Us\n",
+                  style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 30.0
-                    ),
-                  ),
-                  TextSpan(
+                      fontSize: 30.0),
+                ),
+                TextSpan(
                     // Change the about us info here
                     text: "Lorem Ipsum where this is the part we place in the "
-                    "about main campus info here.",
-                    style: TextStyle(
-                      color: Colors.black54
-                    )
-                  )
-                ]
-              )
-            )
-          ),
+                        "about main campus info here.",
+                    style: TextStyle(color: Colors.black54))
+              ]))),
 
           // The picture of main campus section
           Container(
-            padding: const EdgeInsets.all(20.0),
-            child: const Image(
-              // Change the picture by changing the path here
-              image: AssetImage("assets/images/dtsp_main_campus.jpg"),
-              fit: BoxFit.fill,
-            )
-          ),
+              padding: const EdgeInsets.all(20.0),
+              child: const Image(
+                // Change the picture by changing the path here
+                image: AssetImage("assets/images/dtsp_main_campus.jpg"),
+                fit: BoxFit.cover,
+              )),
 
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
 
           // Contact Us section
           Container(
-            margin: EdgeInsets.only(right: MediaQuery.of(context).size.width / 3),
+            margin:
+                EdgeInsets.only(right: MediaQuery.of(context).size.width / 3),
             child: Column(
               children: const <Widget>[
                 Text(
@@ -78,9 +71,8 @@ Widget getCampus(int campusIndex, BuildContext context) {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 ListTile(
-                  leading: Icon(Icons.punch_clock_rounded),
-                  title: Text("Working Hour: 0800 - 1700 GMT+8")
-                ),
+                    leading: Icon(Icons.punch_clock_rounded),
+                    title: Text("Working Hour: 0800 - 1700 GMT+8")),
                 ListTile(
                   leading: Icon(Icons.location_on_outlined),
                   title: Text("Location: Chancellory Building USM"),
@@ -100,47 +92,41 @@ Widget getCampus(int campusIndex, BuildContext context) {
       return Column(
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.all(10.0),
-            alignment: Alignment.topCenter,
-            child: const Text.rich(
-              TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: "About Us\n",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
+              padding: const EdgeInsets.all(10.0),
+              alignment: Alignment.topCenter,
+              child: const Text.rich(TextSpan(children: <TextSpan>[
+                TextSpan(
+                  text: "About Us\n",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
                   ),
-                  TextSpan(
+                ),
+                TextSpan(
                     // Change the about us info here
                     text: "Lorem Ipsum where this is the part we place in the "
-                    "about health campus info here.",
-                    style: TextStyle(
-                      color: Colors.black54
-                    )
-                  )
-                ]
-              )
-            )
-          ),
+                        "about health campus info here.",
+                    style: TextStyle(color: Colors.black54))
+              ]))),
 
           // The picture of main campus section
           Container(
-            padding: const EdgeInsets.all(20.0),
-            child: const Image(
-              // Change the picture by changing the path here
-              image: AssetImage("assets/images/medical_campus.jpg"),
-              fit: BoxFit.fill,
-            )
-          ),
+              padding: const EdgeInsets.all(20.0),
+              child: const Image(
+                // Change the picture by changing the path here
+                image: AssetImage("assets/images/medical_campus.jpg"),
+                fit: BoxFit.cover,
+              )),
 
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
 
           // Contact Us section
           Container(
-            margin: EdgeInsets.only(right:MediaQuery.of(context).size.width / 3),
+            margin:
+                EdgeInsets.only(right: MediaQuery.of(context).size.width / 3),
             child: Column(
               children: const <Widget>[
                 Text(
@@ -148,9 +134,8 @@ Widget getCampus(int campusIndex, BuildContext context) {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 ListTile(
-                  leading: Icon(Icons.punch_clock_rounded),
-                  title: Text("Working Hour: 0800 - 1700 GMT+8")
-                ),
+                    leading: Icon(Icons.punch_clock_rounded),
+                    title: Text("Working Hour: 0800 - 1700 GMT+8")),
                 ListTile(
                   leading: Icon(Icons.location_on_outlined),
                   title: Text("Location: Chancellory Building USM"),
@@ -170,47 +155,41 @@ Widget getCampus(int campusIndex, BuildContext context) {
       return Column(
         children: <Widget>[
           Container(
-            padding: const EdgeInsets.all(10.0),
-            alignment: Alignment.topCenter,
-            child: const Text.rich(
-              TextSpan(
-                children: <TextSpan>[
-                  TextSpan(
-                    text: "About Us\n",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
+              padding: const EdgeInsets.all(10.0),
+              alignment: Alignment.topCenter,
+              child: const Text.rich(TextSpan(children: <TextSpan>[
+                TextSpan(
+                  text: "About Us\n",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
                   ),
-                  TextSpan(
+                ),
+                TextSpan(
                     // Change the about us info here
                     text: "Lorem Ipsum where this is the part we place in the "
-                    "about engineering campus info here.",
-                    style: TextStyle(
-                      color: Colors.black54
-                    )
-                  )
-                ]
-              )
-            )
-          ),
+                        "about engineering campus info here.",
+                    style: TextStyle(color: Colors.black54))
+              ]))),
 
           // The picture of main campus section
           Container(
-            padding: const EdgeInsets.all(20.0),
-            child: const Image(
-              // Change the picture by changing the path here
-              image: AssetImage("assets/images/engineering_campus.jpg"),
-              fit: BoxFit.fill,
-            )
-          ),
+              padding: const EdgeInsets.all(20.0),
+              child: const Image(
+                // Change the picture by changing the path here
+                image: AssetImage("assets/images/engineering_campus.jpg"),
+                fit: BoxFit.cover,
+              )),
 
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
 
           // Contact Us section
           Container(
-            margin: EdgeInsets.only(right: MediaQuery.of(context).size.width / 3),
+            margin:
+                EdgeInsets.only(right: MediaQuery.of(context).size.width / 3),
             child: Column(
               children: const <Widget>[
                 Text(
@@ -218,9 +197,8 @@ Widget getCampus(int campusIndex, BuildContext context) {
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 ListTile(
-                  leading: Icon(Icons.punch_clock_rounded),
-                  title: Text("Working Hour: 0800 - 1700 GMT+8")
-                ),
+                    leading: Icon(Icons.punch_clock_rounded),
+                    title: Text("Working Hour: 0800 - 1700 GMT+8")),
                 ListTile(
                   leading: Icon(Icons.location_on_outlined),
                   title: Text("Location: Chancellory Building USM"),

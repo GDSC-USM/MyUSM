@@ -51,7 +51,7 @@ class _EditProfile extends State<EditProfile> {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 243, 239, 245),
-                          shape: CircleBorder(),
+                          shape: const CircleBorder(),
                           padding: const EdgeInsets.all(5)),
 
                       /* 

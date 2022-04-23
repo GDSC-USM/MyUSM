@@ -16,50 +16,59 @@ class HomeScreen extends StatelessWidget {
       appBar: const UpperNavBar(title: "Home").build(context),
       // Add more details to this when you decide what the drawer will do
       drawer: const SideMenu(),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.spaceEvenly, // one page size area
-          children: <Widget>[
-            // Replace this with a detail item once you decide what it will contain
-            Container(
-              width: double.infinity,
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: SizedBox(
               height: 200,
-              color: Colors.grey,
+              child: PageView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    // Replace this with a detail item once you decide what it will contain
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                      color: Colors.orange[index * 100],
+                    );
+                  },
+                ),
             ),
+          ),
 
-            const Text('Your updates'),
-            SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                // Could be placed in another list and then mapped
-                children: <Widget>[
-                  Container(
-                    width: double.infinity,
-                    height: 400,
-                    color: Colors.pink,
-                    child: const Text("News/Announcement posts go here"),
-                    margin: const EdgeInsets.all(10.0),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 400,
-                    color: Colors.pink,
-                    child: const Text("News/Announcement posts go here"),
-                    margin: const EdgeInsets.all(10.0),
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 400,
-                    color: Colors.pink,
-                    child: const Text("News/Announcement posts go here"),
-                    margin: const EdgeInsets.all(10.0),
-                  ),
-                ],
+          const SliverToBoxAdapter(
+            child: Text(
+              "Your Updates",
+              style: TextStyle(
+                color: Color.fromARGB(255, 39, 38, 53),
+                fontWeight: FontWeight.bold,
               ),
-            )
-          ],
-        ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+
+          SliverToBoxAdapter(
+            child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      width: double.infinity,
+                      height: 400,
+                      color: Colors.pink,
+                      child: const Text("News/Announcement posts go here"),
+                      margin: const EdgeInsets.all(10.0),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                      height: 10,
+                    );
+                  },
+                )
+          )
+        ]
       ),
       bottomNavigationBar: const BottomNavBar(curIndex: 0), // declared below
     );

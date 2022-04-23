@@ -52,11 +52,11 @@ class Profile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       child: Stack(alignment: Alignment.topRight, children: <
                           Widget>[
-                        Container(
+                            Container(
                           padding: const EdgeInsets.all(10),
                           color: const Color.fromARGB(255, 39, 38, 53),
                           height: 120,
-                          width: MediaQuery.of(context).size.width - 10,
+                          width: MediaQuery.of(context).size.width * 0.95,
 
                           // Places the information in a row
                           child: Row(
@@ -105,7 +105,7 @@ class Profile extends StatelessWidget {
 
                         // Edit button
                         Positioned(
-                            right: 15,
+                            right: MediaQuery.of(context).size.width * 0.05,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary:
@@ -129,7 +129,7 @@ class Profile extends StatelessWidget {
                         // Social icons
                         Positioned(
                           top: 85,
-                          right: 10,
+                          right: MediaQuery.of(context).size.width * 0.05,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
