@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:my_usm/widgets/bottom_nav_bar.dart';
+import 'package:my_usm/widgets/side_menu.dart';
+import 'package:my_usm/widgets/app_bar.dart';
 
-import '../widgets/campus_tile.dart';
-import '../providers/user.dart';
+int selectedIndex = 0;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,64 +12,65 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: const Color.fromARGB(255, 243, 239, 245),
+      appBar: const UpperNavBar(title: "Home").build(context),
       // Add more details to this when you decide what the drawer will do
-      drawer: Drawer(
-        child: ElevatedButton(
-          onPressed: () => Provider.of<User>(context, listen: false).logout(),
-          child: const Text('Log out'),
-        ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly, // one page size area
-        children: <Widget>[
-          const Text('Student Details'),
-          // Replace this with a detail item once you decide what it will contain
-          Container(
-            width: double.infinity,
-            height: 200,
-            color: Colors.grey,
-          ),
-          const Text('Campus'),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              // Could be placed in another list and then mapped
-              children: const <Widget>[
-                CampusTile(
-                  name: 'Main campus',
-                  image: 'assets/images/main_campus.jpg',
+      drawer: const SideMenu(),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: 200,
+              child: PageView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    // Replace this with a detail item once you decide what it will contain
+                    return Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                      color: Colors.orange[index * 100],
+                    );
+                  },
                 ),
-                CampusTile(
-                  name: 'Engineering campus',
-                  image: 'assets/images/engineering_campus.jpg',
-                ),
-                CampusTile(
-                  name: 'Medical campus',
-                  image: 'assets/images/medical_campus.jpg',
-                ),
-              ],
             ),
+          ),
+
+          const SliverToBoxAdapter(
+            child: Text(
+              "Your Updates",
+              style: TextStyle(
+                color: Color.fromARGB(255, 39, 38, 53),
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+
+          SliverToBoxAdapter(
+            child: ListView.separated(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      width: double.infinity,
+                      height: 400,
+                      color: Colors.pink,
+                      child: const Text("News/Announcement posts go here"),
+                      margin: const EdgeInsets.all(10.0),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return const SizedBox(
+                      height: 10,
+                    );
+                  },
+                )
           )
-        ],
+        ]
       ),
-      bottomNavigationBar: _bottomNavBar(), // declared down
+      bottomNavigationBar: const BottomNavBar(curIndex: 0), // declared below
     );
   }
-}
-
-// Extracted into a function for ease of use
-BottomNavigationBar _bottomNavBar() {
-  return BottomNavigationBar(
-    items: const [
-      BottomNavigationBarItem(
-        icon: Icon(Icons.home),
-        label: 'Home',
-      ),
-      BottomNavigationBarItem(
-        icon: Icon(Icons.person),
-        label: 'User',
-      ),
-    ],
-  );
 }

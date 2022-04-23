@@ -1,9 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.my_usm">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="my_usm"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+        android:value="AIzaSyDfh-qrp9_1bdFttEAW_4Ze9z4P71KXiKs"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
