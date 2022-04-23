@@ -59,7 +59,7 @@ class _EditProfile extends State<EditProfile> {
                         user to change their cover image
                       */
                       onPressed: () {
-                        null;
+                        null; 
                       },
                       child: const FaIcon(
                         FontAwesomeIcons.pencil,

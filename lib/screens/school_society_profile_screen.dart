@@ -1,6 +1,7 @@
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_usm/screens/school_society_edit_screen.dart';
 import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/bottom_nav_bar.dart';
 
@@ -165,22 +166,21 @@ class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
   Widget homeScreen() {
     return Column(
       children: <Widget>[
-
         // Edit button only visible for page admins
         Container(
           alignment: Alignment.centerLeft,
           padding: const EdgeInsets.only(left: 10.0),
           child: ElevatedButton(
             // TODO: Link to edit society/school screen here
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(SchoolSocietyEdit.routeName);
+            },
             child: const Text("Edit"),
             style: ElevatedButton.styleFrom(
-              primary: const Color.fromARGB(255, 39, 38, 53),
-              textStyle: const TextStyle(
-                color: Color.fromARGB(255, 243, 239, 245),
-                fontWeight: FontWeight.bold
-              )
-            ),
+                primary: const Color.fromARGB(255, 39, 38, 53),
+                textStyle: const TextStyle(
+                    color: Color.fromARGB(255, 243, 239, 245),
+                    fontWeight: FontWeight.bold)),
           ),
         ),
 
@@ -313,124 +313,115 @@ class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
   }
 
   Widget postScreen() {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          // Button for a new post (only seen by the profile admins)
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: ElevatedButton(
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text("New Post"),
-                        content: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            const Text("Caption"),
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
+        Widget>[
+      // Button for a new post (only seen by the profile admins)
+      Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: ElevatedButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: const Text("New Post"),
+                    content: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        const Text("Caption"),
 
-                            // Add caption box
-                            SizedBox(
-                              height: 124,
-                              child: TextField(
-                                maxLines: 10,
-                                decoration: InputDecoration(
-                                  hintText: "What's on your mind?",
+                        // Add caption box
+                        SizedBox(
+                          height: 124,
+                          child: TextField(
+                            maxLines: 10,
+                            decoration: InputDecoration(
+                                hintText: "What's on your mind?",
 
-                                  // Styling
-                                  filled: true,
-                                  fillColor: Colors.grey.shade200,
-                                  border: OutlineInputBorder(
+                                // Styling
+                                filled: true,
+                                fillColor: Colors.grey.shade200,
+                                border: OutlineInputBorder(
                                     borderSide: const BorderSide(
-                                      color: Color.fromARGB(255, 39, 38, 53),
-                                      width: 2
-                                    ),
-                                    borderRadius: BorderRadius.circular(10)
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
+                                        color: Color.fromARGB(255, 39, 38, 53),
+                                        width: 2),
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: OutlineInputBorder(
                                     borderSide: const BorderSide(
-                                      color: Color.fromARGB(255, 255, 127, 17),
-                                      width: 2
-                                    ),
-                                    borderRadius: BorderRadius.circular(10)
-                                  )
-                                ),
-                              ),
-                            ),
+                                        color:
+                                            Color.fromARGB(255, 255, 127, 17),
+                                        width: 2),
+                                    borderRadius: BorderRadius.circular(10))),
+                          ),
+                        ),
 
-                            // Add photo icon
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.photo_camera_back_outlined,
-                                    color: Color.fromARGB(255, 39, 38, 53),
-                                  )
-                                ),
-                                IconButton(
-                                  onPressed: () {},
-                                  icon: const Icon(
-                                    Icons.video_camera_back_outlined,
-                                    color: Color.fromARGB(255, 39, 38, 53),
-                                  )
-                                ),
-                              ],
-                            ),
-                            
-                            // Post it button
-                            ElevatedButton(
-                              // TODO: Submit the informations to firebase
-                              onPressed: () {},
-                              child: const Text("Post it!"),
-                              style: ElevatedButton.styleFrom(
-                                primary: const Color.fromARGB(255, 39, 38, 53),
-                                textStyle: const TextStyle(
-                                  color: Color.fromARGB(255, 243, 239, 245),
-                                )
-                              ),
-                            )
+                        // Add photo icon
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.photo_camera_back_outlined,
+                                  color: Color.fromARGB(255, 39, 38, 53),
+                                )),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.video_camera_back_outlined,
+                                  color: Color.fromARGB(255, 39, 38, 53),
+                                )),
                           ],
                         ),
-                        scrollable: true,
-                      );
-                    });
-              },
-              child: const Text(
-                "New Post",
-                style: TextStyle(color: Color.fromARGB(255, 243, 239, 245)),
-              ),
-              style: ElevatedButton.styleFrom(
-                primary: const Color.fromARGB(255, 39, 38, 53),
-              ),
-            ),
-          ),
 
-          // The posts of the profile
-          ListView.separated(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (BuildContext context, int index) {
-              return Container(
-                margin: const EdgeInsets.all(10.0),
-                height: 200,
-                alignment: Alignment.center,
-                child: Text(
-                  "Post number " + (index + 1).toString(),
-                  style: const TextStyle(color: Colors.white),
-                ),
-                color: const Color.fromARGB(255, 39, 38, 53),
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) =>
-                const SizedBox(
-              height: 10.0,
-            ),
-            itemCount: 10,
+                        // Post it button
+                        ElevatedButton(
+                          // TODO: Submit the informations to firebase
+                          onPressed: () {},
+                          child: const Text("Post it!"),
+                          style: ElevatedButton.styleFrom(
+                              primary: const Color.fromARGB(255, 39, 38, 53),
+                              textStyle: const TextStyle(
+                                color: Color.fromARGB(255, 243, 239, 245),
+                              )),
+                        )
+                      ],
+                    ),
+                    scrollable: true,
+                  );
+                });
+          },
+          child: const Text(
+            "New Post",
+            style: TextStyle(color: Color.fromARGB(255, 243, 239, 245)),
           ),
-        ]);
+          style: ElevatedButton.styleFrom(
+            primary: const Color.fromARGB(255, 39, 38, 53),
+          ),
+        ),
+      ),
+
+      // The posts of the profile
+      ListView.separated(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            margin: const EdgeInsets.all(10.0),
+            height: 200,
+            alignment: Alignment.center,
+            child: Text(
+              "Post number " + (index + 1).toString(),
+              style: const TextStyle(color: Colors.white),
+            ),
+            color: const Color.fromARGB(255, 39, 38, 53),
+          );
+        },
+        separatorBuilder: (BuildContext context, int index) => const SizedBox(
+          height: 10.0,
+        ),
+        itemCount: 10,
+      ),
+    ]);
   }
 }
