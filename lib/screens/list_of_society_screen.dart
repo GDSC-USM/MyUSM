@@ -64,8 +64,9 @@ class ListOfSociety extends StatelessWidget {
                 // leading: ,
                 title: Text(mainCampusSociety[index]),
                 onTap: () {
-                  Navigator.of(context)
-                      .pushNamed(SchoolSocietyProfile.routeName, arguments: mainCampusSociety[index]);
+                  Navigator.of(context).pushNamed(
+                      SchoolSocietyProfile.routeName,
+                      arguments: mainCampusSociety[index]);
                 },
               );
             });

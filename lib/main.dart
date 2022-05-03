@@ -38,7 +38,7 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ListenableProvider<User>(create: (context) => User()),
-        Provider<Posts>(create: (context) => Posts()),
+        ListenableProvider<Posts>(create: (context) => Posts()),
       ],
       child: MaterialApp(
         // The routes table

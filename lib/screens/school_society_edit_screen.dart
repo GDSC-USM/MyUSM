@@ -20,7 +20,6 @@ class _SchoolSocietyEdit extends State<SchoolSocietyEdit> {
 
   @override
   Widget build(BuildContext context) {
-
     // Initialize to have at least one widget inside
     if (organizationList.isEmpty) {
       addOrganizationList();

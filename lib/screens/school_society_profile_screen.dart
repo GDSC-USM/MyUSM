@@ -1,9 +1,12 @@
 import 'package:expandable_text/expandable_text.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:my_usm/providers/posts.dart';
 import 'package:my_usm/screens/school_society_edit_screen.dart';
 import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/bottom_nav_bar.dart';
+import 'package:provider/provider.dart';
 
 class SchoolSocietyProfile extends StatefulWidget {
   static const String routeName = "/schoolSocietyProfile";
@@ -319,6 +322,9 @@ class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
         padding: const EdgeInsets.all(10.0),
         child: ElevatedButton(
           onPressed: () {
+            // Holds content of post text
+            final contentController = TextEditingController();
+
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
@@ -333,6 +339,7 @@ class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
                         SizedBox(
                           height: 124,
                           child: TextField(
+                            controller: contentController,
                             maxLines: 10,
                             decoration: InputDecoration(
                                 hintText: "What's on your mind?",
@@ -375,8 +382,17 @@ class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
 
                         // Post it button
                         ElevatedButton(
-                          // TODO: Submit the informations to firebase
-                          onPressed: () {},
+                          // TODO: Add image and video post functionality
+                          onPressed: () {
+                            if (contentController.text.isEmpty) {
+                              return;
+                            }
+                            Provider.of<Posts>(context, listen: false)
+                                .createPost(
+                                    author: widget._title,
+                                    content: contentController.text)
+                                .then((value) => Navigator.of(context).pop());
+                          },
                           child: const Text("Post it!"),
                           style: ElevatedButton.styleFrom(
                               primary: const Color.fromARGB(255, 39, 38, 53),
