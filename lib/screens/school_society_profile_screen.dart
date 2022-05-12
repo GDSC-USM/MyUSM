@@ -1,5 +1,4 @@
 import 'package:expandable_text/expandable_text.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:my_usm/providers/posts.dart';
@@ -7,6 +6,7 @@ import 'package:my_usm/screens/school_society_edit_screen.dart';
 import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SchoolSocietyProfile extends StatefulWidget {
   static const String routeName = "/schoolSocietyProfile";
@@ -21,6 +21,23 @@ class SchoolSocietyProfile extends StatefulWidget {
 
 class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
   bool isSubscribed = false, isHome = true;
+  // Holds the image/video
+  XFile? _pickedImage;
+  // Function to pick the image/video
+  Future<void> pickImage() async {
+    final _imagePicker = ImagePicker();
+    _pickedImage = await _imagePicker.pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 500,
+      maxHeight: 500,
+    );
+    setState(() {});
+  }
+
+  void clearImage() {
+    _pickedImage = null;
+    setState(() {});
+  }
 
   // For the sake of testing the widgets
   String aboutUs =
@@ -328,82 +345,117 @@ class _SchoolSocietyProfileState extends State<SchoolSocietyProfile> {
             showDialog(
                 context: context,
                 builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text("New Post"),
-                    content: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        const Text("Caption"),
+                  return StatefulBuilder(
+                      builder: (context, setState) => AlertDialog(
+                            title: const Text("New Post"),
+                            content: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                const Text("Caption"),
 
-                        // Add caption box
-                        SizedBox(
-                          height: 124,
-                          child: TextField(
-                            controller: contentController,
-                            maxLines: 10,
-                            decoration: InputDecoration(
-                                hintText: "What's on your mind?",
+                                // Add caption box
+                                SizedBox(
+                                  height: 124,
+                                  child: TextField(
+                                    controller: contentController,
+                                    maxLines: 10,
+                                    decoration: InputDecoration(
+                                        hintText: "What's on your mind?",
 
-                                // Styling
-                                filled: true,
-                                fillColor: Colors.grey.shade200,
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 39, 38, 53),
-                                        width: 2),
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: const BorderSide(
+                                        // Styling
+                                        filled: true,
+                                        fillColor: Colors.grey.shade200,
+                                        border: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 39, 38, 53),
+                                                width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        focusedBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Color.fromARGB(
+                                                    255, 255, 127, 17),
+                                                width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(10))),
+                                  ),
+                                ),
+
+                                // Add photo icon
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    IconButton(
+                                        onPressed: () async {
+                                          await pickImage();
+                                          setState(() {});
+                                        },
+                                        icon: const Icon(
+                                          Icons.photo_camera_back_outlined,
+                                          color:
+                                              Color.fromARGB(255, 39, 38, 53),
+                                        )),
+                                    // add conditionally
+                                    if (_pickedImage != null)
+                                      Row(
+                                        children: [
+                                          SizedBox(
+                                            width: 100,
+                                            child: Text(
+                                              _pickedImage!.name,
+                                              overflow: TextOverflow.fade,
+                                              softWrap: false,
+                                            ),
+                                          ),
+                                          IconButton(
+                                              onPressed: () {
+                                                clearImage();
+                                                setState(() {});
+                                              },
+                                              icon: const Icon(
+                                                  Icons.delete_outlined)),
+                                        ],
+                                      )
+                                    // IconButton(
+                                    //     onPressed: () {},
+                                    //     icon: const Icon(
+                                    //       Icons.video_camera_back_outlined,
+                                    //       color: Color.fromARGB(255, 39, 38, 53),
+                                    //     )),
+                                  ],
+                                ),
+
+                                // Post it button
+                                ElevatedButton(
+                                  onPressed: () {
+                                    if (contentController.text.isEmpty) {
+                                      return;
+                                    }
+                                    Provider.of<Posts>(context, listen: false)
+                                        .createPost(
+                                            author: widget._title,
+                                            content: contentController.text,
+                                            media: _pickedImage)
+                                        .then((value) {
+                                      Navigator.of(context).pop();
+                                      clearImage();
+                                    });
+                                  },
+                                  child: const Text("Post it!"),
+                                  style: ElevatedButton.styleFrom(
+                                      primary:
+                                          const Color.fromARGB(255, 39, 38, 53),
+                                      textStyle: const TextStyle(
                                         color:
-                                            Color.fromARGB(255, 255, 127, 17),
-                                        width: 2),
-                                    borderRadius: BorderRadius.circular(10))),
-                          ),
-                        ),
-
-                        // Add photo icon
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.photo_camera_back_outlined,
-                                  color: Color.fromARGB(255, 39, 38, 53),
-                                )),
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.video_camera_back_outlined,
-                                  color: Color.fromARGB(255, 39, 38, 53),
-                                )),
-                          ],
-                        ),
-
-                        // Post it button
-                        ElevatedButton(
-                          // TODO: Add image and video post functionality
-                          onPressed: () {
-                            if (contentController.text.isEmpty) {
-                              return;
-                            }
-                            Provider.of<Posts>(context, listen: false)
-                                .createPost(
-                                    author: widget._title,
-                                    content: contentController.text)
-                                .then((value) => Navigator.of(context).pop());
-                          },
-                          child: const Text("Post it!"),
-                          style: ElevatedButton.styleFrom(
-                              primary: const Color.fromARGB(255, 39, 38, 53),
-                              textStyle: const TextStyle(
-                                color: Color.fromARGB(255, 243, 239, 245),
-                              )),
-                        )
-                      ],
-                    ),
-                    scrollable: true,
-                  );
+                                            Color.fromARGB(255, 243, 239, 245),
+                                      )),
+                                )
+                              ],
+                            ),
+                            scrollable: true,
+                          ));
                 });
           },
           child: const Text(
