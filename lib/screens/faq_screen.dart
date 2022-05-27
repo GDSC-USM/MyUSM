@@ -16,7 +16,8 @@ class _FAQState extends State<FAQ> {
     "Why USM?": "Because it's cool",
     "Why is this so random": "Because this is random",
     "Why is the server crashing": "Because it's APEX",
-    "Test for a long one" : "Holyd snd sudfgsugdfsgf hdsafdhfydgf hdsgfdhjfh udfhudgdfbdfhdu fgduy fg  ds duf uudsyuuds ud udh fud fdu du "
+    "Test for a long one":
+        "Holyd snd sudfgsugdfsgf hdsafdhfydgf hdsgfdhjfh udfhudgdfbdfhdu fgduy fg  ds duf uudsyuuds ud udh fud fdu du "
   };
 
   @override
@@ -39,14 +40,15 @@ class _FAQState extends State<FAQ> {
               tileColor: const Color.fromARGB(255, 39, 38, 53),
               iconColor: const Color.fromARGB(255, 243, 239, 245),
               leading: const Icon(Icons.search),
-              title: const TextField(
-                decoration: InputDecoration(
-                  hintText: "Curious..? Search for the answer here.",
-                  hintStyle: TextStyle(
-                    color: Color.fromARGB(255, 243, 239, 245),
-                  ),
-                ),
-                style: TextStyle(color: Color.fromARGB(255, 243, 239, 245)),
+              title: Autocomplete<String>(
+                optionsBuilder: (TextEditingValue textEditingValue) {
+                  if (textEditingValue.text == '') {
+                    return const Iterable<String>.empty();
+                  }
+                  return faqs.keys.where((String option) {
+                    return option.toLowerCase().contains(textEditingValue.text.toLowerCase());
+                  });
+                },
               ),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
@@ -69,7 +71,6 @@ class _FAQState extends State<FAQ> {
                 return ExpansionTile(
                   iconColor: const Color.fromARGB(255, 255, 127, 17),
                   textColor: const Color.fromARGB(255, 255, 127, 17),
-                  
                   title: Text(faqs.keys.elementAt(index)),
 
                   /*
@@ -86,12 +87,10 @@ class _FAQState extends State<FAQ> {
                       title: Text(
                         faqs.values.elementAt(index),
                         style: const TextStyle(
-                          color: Color.fromARGB(255, 39, 38, 53)
-                        ),
+                            color: Color.fromARGB(255, 39, 38, 53)),
                       ),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
-                      ),
+                          borderRadius: BorderRadius.circular(10)),
                     )
                   ],
                   controlAffinity: ListTileControlAffinity.leading,
