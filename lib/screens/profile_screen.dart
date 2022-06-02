@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:provider/provider.dart';
+
 import 'package:my_usm/screens/profile_edit_screen.dart';
 import 'package:my_usm/widgets/app_bar.dart';
 import 'package:my_usm/widgets/bottom_nav_bar.dart';
-import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import '../providers/user.dart';
 
 class Profile extends StatelessWidget {
   static const String routeName = "/profile";
   const Profile({Key? key}) : super(key: key);
-
-  // Used for the about me description testing purpose
-  final String aboutMe =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque consequat interdum venenatis. Pellentesque sed nunc ut nunc lacinia mollis. Nullam euismod est sed porta faucibus. Curabitur interdum dolor leo, et lobortis diam pretium quis. Praesent ligula mauris, convallis eu ultricies ac, euismod sed lectus. Ut elit velit, scelerisque at lorem at, euismod dapibus sapien. Praesent vel lorem vitae lectus iaculis pharetra. Nullam interdum, tellus ac ullamcorper auctor, ante ante efficitur nibh, ut dictum justo ligula imperdiet felis. Proin accumsan odio sed arcu accumsan, a lobortis leo pellentesque. Nullam at porttitor velit";
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +33,15 @@ class Profile extends StatelessWidget {
               */
               Row(children: <Widget>[
                 Expanded(
-                  child: Container(
-                    height: 150,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                'https://www.sageisland.com/wp-content/uploads/2017/06/beat-instagram-algorithm.jpg'),
-                            fit: BoxFit.cover)),
+                  child: Consumer<User>(
+                    builder: (ctx, user, _) => Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  user.defaultAccount['Banner-pic']),
+                              fit: BoxFit.cover)),
+                    ),
                   ),
                 ),
               ]),
@@ -52,7 +53,7 @@ class Profile extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       child: Stack(alignment: Alignment.topRight, children: <
                           Widget>[
-                            Container(
+                        Container(
                           padding: const EdgeInsets.all(10),
                           color: const Color.fromARGB(255, 39, 38, 53),
                           height: 120,
@@ -65,15 +66,19 @@ class Profile extends StatelessWidget {
                               // Profile Image
                               Flexible(
                                 flex: 1,
-                                child: Container(
-                                  height: 90,
-                                  width: 90,
-                                  decoration: const BoxDecoration(
+                                child: Consumer<User>(
+                                  builder: (ctx, user, _) => Container(
+                                    height: 90,
+                                    width: 90,
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       image: DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(
-                                              'http://cdn.ppcorn.com/us/wp-content/uploads/sites/14/2016/01/Mark-Zuckerberg-pop-art-ppcorn.jpg'))),
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                            user.defaultAccount['Profile-pic']),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
 
@@ -88,15 +93,22 @@ class Profile extends StatelessWidget {
                                   These informations should be fetched from
                                   Firebase later
                                 */
-                              const Flexible(
+                              Flexible(
                                 flex: 2,
                                 fit: FlexFit.tight,
-                                child: Text(
-                                  "Jason Lee\nSchool of Computer Science\nYear 1",
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                      color: Color.fromARGB(255, 243, 239, 245),
-                                      height: 1.8),
+                                child: Positioned(
+                                  child: Consumer<User>(
+                                    builder: (ctx, user, _) {
+                                      return Text(
+                                        "${user.defaultAccount['Name']}\n${user.defaultAccount['School']}\n${user.defaultAccount['Study-year']}",
+                                        textAlign: TextAlign.left,
+                                        style: const TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 243, 239, 245),
+                                            height: 1.8),
+                                      );
+                                    },
+                                  ),
                                 ),
                               ),
                             ],
@@ -198,13 +210,15 @@ class Profile extends StatelessWidget {
           // About me description
           Container(
             padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-            child: Text(
-              aboutMe,
-              style: const TextStyle(
-                color: Color.fromARGB(255, 39, 38, 53),
-                fontSize: 15,
+            child: Consumer<User>(
+              builder: (ctx, user, _) => Text(
+                user.defaultAccount['About-me'],
+                style: const TextStyle(
+                  color: Color.fromARGB(255, 39, 38, 53),
+                  fontSize: 15,
+                ),
+                textAlign: TextAlign.justify,
               ),
-              textAlign: TextAlign.justify,
             ),
           ),
 
